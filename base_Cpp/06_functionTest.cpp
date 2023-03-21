@@ -1,6 +1,7 @@
 #include <iostream>
 
 using namespace std;
+// 함수 선언
 void func1(); // 입력X, 출력X
 void func2(int a, int b); // 입력O, 출력X
 int func3(); // 입력X, 출력O
@@ -11,6 +12,7 @@ int main()
 	int num1 = 10;
 	int num2 = 20;
 
+	// 함수 호출
 	func1();
 	func2(num1, num2);
 	cout << "res3 : " << func3() << endl;
@@ -19,6 +21,7 @@ int main()
 	return 0;
 }
 
+// 함수 정의
 void func1()
 {
 	int a = 10;
