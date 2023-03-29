@@ -2,76 +2,76 @@
 #include <cstring>
 using namespace std;
 
-class Computer
+class computer
 {
 private:
 	char owner[50];
 public:
-	Computer(char* name)
+	computer(char* name)
 	{
 		strcpy(owner, name);
 	}
-	void Calculate()
+	void calculate()
 	{
 		cout << "요청 내용을 계산합니다." << endl;
 	}
 };
 
-class NotebookComp : public Computer
+class notebookcomp : public computer
 {
 private:
-	int Battery;
+	int battery;
 public:
-	NotebookComp(char * name , int initChag) : Computer(name), Battery(initChag)
+	notebookcomp(char * name , int initchag) : computer(name), battery(initchag)
 	{ }
-	void Charging() { Battery += 5; }
-	void UseBattery() { Battery -= 5; }
-	void MovingCal()
+	void charging() { battery += 5; }
+	void usebattery() { battery -= 5; }
+	void movingcal()
 	{
-		if (GetBatteryInfo() < 1)
+		if (getbatteryinfo() < 1)
 		{
 			cout << "충전이 필요합니다." << endl;
 			return;
 		}
 		cout << "이동하면서 ";
-		Calculate();
-		UseBattery();
+		calculate();
+		usebattery();
 	}
-	int GetBatteryInfo() { return Battery; }
+	int getbatteryinfo() { return battery; }
 };
 
-class TabletNotebook : public NotebookComp
+class tabletnotebook : public notebookcomp
 {
 private:
-	char regstPenModel[50];
+	char regstpenmodel[50];
 public:
-	TabletNotebook(char* name, int initChag, char* pen) :NotebookComp(name, initChag)
+	tabletnotebook(char* name, int initchag, char* pen) :notebookcomp(name, initchag)
 	{
-		strcpy(regstPenModel, pen);
+		strcpy(regstpenmodel, pen);
 	}
-	void Write(char* penInfo)
+	void write(char* peninfo)
 	{
-		if (GetBatteryInfo() < 1)
+		if (getbatteryinfo() < 1)
 		{
 			cout << "충전이 필요합니다. " << endl;
 			return;
 		}
-		if (strcmp(regstPenModel, penInfo) != 0)
+		if (strcmp(regstpenmodel, peninfo) != 0)
 		{
 			cout << "등록된 펜이 아닙니다.";
 			return;
 		}
 		cout << "필기 내용을 처리합니다." << endl;
-		UseBattery();
+		usebattery();
 	}
 };
 
 int main()
 {
-	NotebookComp nc("이수진", 5);
-	TabletNotebook tn("이규수", 5, "ISE-241-242");
-	nc.MovingCal();
-	tn.Write("ISE-241-242");
+	notebookcomp nc("이수진", 5);
+	tabletnotebook tn("이규수", 5, "ise-241-242");
+	nc.movingcal();
+	tn.write("ise-241-242");
 	
 
 	return 0;
