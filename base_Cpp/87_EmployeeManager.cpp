@@ -15,6 +15,14 @@ public:
 	{
 		cout << "name: " << name << endl;
 	}
+	virtual int GetPay() const
+	{
+		return 0;
+	}
+	virtual void ShowSalaryInfo() const
+	{
+
+	}
 };
 
 class PermanentWorker :public Employee
@@ -22,7 +30,7 @@ class PermanentWorker :public Employee
 private:
 	int salary;
 public:
-	PermanentWorker(char*name,int money):Employee(name),salary(money)
+	PermanentWorker(const char*name,int money):Employee(name),salary(money)
 	{ }
 	int GetPay() const // 함수 오버라이딩 ... 자식 클래스의 오버라이딩 된 메소드에 의해 가려짐
 	{
@@ -41,7 +49,7 @@ private:
 	int workTime;
 	int payPerHour;
 public:
-	TemporaryWorker(char * name, int pay):Employee(name),workTime(0),payPerHour(pay)
+	TemporaryWorker(const char * name, int pay):Employee(name),workTime(0),payPerHour(pay)
 	{ }
 	void AddWorkTime(int time)
 	{
@@ -64,7 +72,7 @@ private:
 	int saleResult;
 	double bonusRatio;
 public:
-	SaleWorker(char * name,int money,double ratio):PermanentWorker(name,money),saleResult(0),bonusRatio(ratio)
+	SaleWorker(const char * name,int money,double ratio):PermanentWorker(name,money),saleResult(0),bonusRatio(ratio)
 	{ }
 	void AddSalesResult(int value)
 	{
@@ -95,11 +103,16 @@ public:
 	}
 	void ShowAllSalaryInfo() const
 	{
-		
+		for (int i = 0; i < empNum; i++)
+			empList[i]->ShowSalaryInfo();
 	}
 	void ShowTotalSalary() const
 	{
 		int sum = 0;
+		for (int i = 0; i < empNum; i++)
+		{
+			sum += empList[i]->GetPay();
+		}
 		cout << "salary sum : " << sum << endl;
 	}
 	~EmployeeHandler()
